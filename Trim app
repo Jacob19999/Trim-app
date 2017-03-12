@@ -1,0 +1,61 @@
+//  ViewController.swift
+//  A320 Trim Calculator
+//  Created by Jacob on 3/12/17.
+//  Copyright © 2017 Horizons digital technologies. All rights reserved.
+//  Horizonsdigitaltechnologies@gmail.com
+
+import UIKit
+
+class ViewController: UIViewController {
+    
+    @IBOutlet weak var UserImput: UITextField!
+    
+    //Textfield properties defined
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    override func viewDidLoad() {
+        UserImput.keyboardType = UIKeyboardType.decimalPad
+    }
+    
+    @IBOutlet weak var Output: UITextField!
+    
+    // User interaction for output is disabled
+    
+    @IBAction func Calculate(_ sender: UIButton)
+    {
+        self.UserImput.resignFirstResponder()// Hides the keyboard when Calculate key is pressed
+        
+                        if UserImput.text == ""{ //If there is no value in the text field the error below displays
+            
+            let myAlert = UIAlertController(title: "Error", message: "You did not enter any number!", preferredStyle: UIAlertControllerStyle.alert)
+        
+        let gotitbutton = UIAlertAction(title: "Got it !", style: UIAlertActionStyle.default){(ACTION) in print("got it button")
+            }
+        myAlert.addAction(gotitbutton);
+        self.present(myAlert, animated: true, completion: nil);
+        }
+        //Subject to change , math formula will be applied in next update
+        if UserImput.text == "31.6" {
+            Output.text = "0.7DN"
+            UserImput.text=""; // Clears text field
+        } else {
+            //Else will display error message // alert
+            let myAlert = UIAlertController(title: "Error", message: "Please enter a number between 17.0 and 40.0. Format is XX.X ", preferredStyle: UIAlertControllerStyle.alert)
+            //The "Dismiss button" Properties
+            let gotitbutton = UIAlertAction(title: "Got it !", style: UIAlertActionStyle.default){(ACTION) in print("got it button")
+                
+            }
+            //Properties for the hiding of the alert after pressing "dismiss button"
+            myAlert.addAction(gotitbutton);
+            self.present(myAlert, animated: true, completion: nil);
+               }
+    }
+    
+    
+    @IBOutlet weak var useful_info: UIButton!
+    
+}
+
+
